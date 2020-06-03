@@ -22,35 +22,45 @@ const vm = new window.Vue({
 			a : 1,
 			b : 1,
 			osc : 0,
+			colorsPalette : ["#FC9999","#FC9900","#99AA99"]
+			
 		}
 	},
 
 	methods: {
 
 	setup(sketch) {
-		sketch.createCanvas(sketch.windowWidth,sketch.windowHeight);
+		  sketch.createCanvas(sketch.windowWidth,sketch.windowHeight);
       	sketch.background('green');
       	sketch.text('Hello p5!', 20, 20);
     },
     
     draw(sketch){
-    	 sketch.background(1);
+    	 sketch.background(255);
+    	 //sketch.blendMode(sketch.OVERLAY);
     	//if(sketch.frameCount % 100== 0){
+    	//sketch.directionalLight(55,sketch.windowWidth/2,sketch.windowHeight/2,5000);
+    	//
+    	//
+    	//
+    	//sketch.lights();
+    	//sketch.normalMaterial();
 			//console.log(sketch.frameCount);
-    		  
-//
-			this.supershape(sketch,1,sketch.height/2,100,0,40,10,10,180);
-			//sketch.blendMode(sketch.LIGHTEST);
-			this.supershape(sketch,2,sketch.height/3,20,25,60,55,30,150);
-
-			this.supershape(sketch,2,sketch.height/4,200,0,1,1,1,250);
+    	//sketch.camera(sketch.windowWidth/2,sketch.windowHeight/2  ,1000, sketch.windowWidth/2, sketch.windowHeight/2, 0, 0, -1, 0);  
+			//sketch.directionalLight(255, sketch.windowWidth/2, sketch.windowHeight/2-1000, 2000 + sketch.sin(sketch.frameCount * 10) * 10)
+			this.supershape(sketch,sketch.windowWidth/3,sketch.windowHeight/2,.01,2,sketch.height/4,100,0,.40,.10,.10,this.colorsPalette[0]);
+			this.supershape(sketch,sketch.windowWidth/2,sketch.windowHeight/3,.01,8,sketch.height/5,100,0,.3,.3,.3,this.colorsPalette[2]);
+			//sketch.blendMode(sketch.MULTIPLY);
+			this.supershape(sketch,sketch.windowWidth/3,sketch.windowHeight/2,.05,10,sketch.height/6,20,25,2,5,3,this.colorsPalette[1]);
+			
+			this.supershape(sketch,sketch.windowWidth/2,sketch.windowHeight/2,.03,20,sketch.height/8,200,10,1,1,1,this.colorsPalette[2]);
 
 			//this.supershape(sketch,5);
 
     	//}
     	///this.postMood();
 
-    	
+    	this.osc += .002;
 	},
 
  	postMood : function () {
@@ -86,18 +96,19 @@ const vm = new window.Vue({
 
 		  return (1 / part3);
 		},
-	supershape : function(sketch,osc,radius,total,m,n1,n2,n3,col){
+	supershape : function(sketch,xPos,yPos,osc,pulse,radius,total,m,n1,n2,n3,col){
 
 		sketch.push();
 		//var m = 6;//sketch.map(sketch.sin(osc), -1, 1, 0, 10); //slider.value();
 			  //this.osc += .02;
 			  //console.log("osc:",osc);
 			  
-			  sketch.translate(sketch.width / 2, sketch.height / 2);
-
-			  sketch.stroke(col,80);
-			  sketch.strokeWeight(10);
-			  sketch.noFill();
+			  sketch.translate(xPos,yPos);
+			  c = sketch.color(col);
+			  c.setAlpha(98)
+			  sketch.fill(c);
+			  
+			  sketch.noStroke();
 
 			  //var radius = sketch.height/3;
 
@@ -105,14 +116,21 @@ const vm = new window.Vue({
 			  var increment = sketch.TWO_PI / total;
 
 			  sketch.beginShape();
+			  //sketch.blendMode(sketch.OVERLAY);
 			  for (var angle = 0; angle < sketch.TWO_PI; angle += increment) {
+			    m += sketch.sin(this.osc);
+
 			    var r = this.supershape_factor(sketch,angle,m,n1,n2,n3);
-			    r += sketch.random(-.02,.02);
+			    r += sketch.sin(this.osc+osc);
 			    //console.log("r:",r);
 			    var x = radius * r * sketch.cos(angle);
 			    var y = radius * r * sketch.sin(angle);
-			    //sketch.ellipse(x,y,10,10)
 			    sketch.vertex(x,y);
+					//sketch.strokeWeight(1);
+			  	//sketch.stroke(255);
+			    //sketch.ellipse(x,y,10,10)
+			    //sketch.noStroke();
+			    
 			  }
 			  sketch.endShape(sketch.CLOSE);
 			sketch.pop();
