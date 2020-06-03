@@ -1,0 +1,23 @@
+html, body {
+	font-family: Arial;
+	height:100%;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	xbackground-image: url('https://source.unsplash.com/1280x720/?beach');
+	background-size: cover;
+}
+
+.page {
+	border:20px solid rgba(255,255,255.9);
+	padding:40px;
+	background-color: rgba(255,255,255,0.8);
+}
+
+.moods {
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
