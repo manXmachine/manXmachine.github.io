@@ -39,10 +39,10 @@ const vm = new window.Vue({
     draw(sketch){
     	sketch.background(0);
     	this.lines(sketch,1,242,226,196,this.t*2,sketch.windowHeight/4);
-    	this.lines(sketch,1,242,185,15,this.t*2,sketch.windowHeight/4+10);
-    this.lines(sketch,1,242,121,15,this.t,sketch.windowHeight/3-10);
+    	this.lines(sketch,1,242,185,15,this.t*2,sketch.windowHeight/4+sketch.sin(this.t)*10);
+    this.lines(sketch,1,242,121,15,this.t,sketch.windowHeight/3+sketch.sin(this.t)*5);
      this.lines(sketch,1,217,43,4,this.t,sketch.windowHeight/2.5);
-     this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+10);
+     this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*15);
      this.lines(sketch,1,242,226,196,this.t,100);
     /*this.lines(sketch,1,242,185,15,this.t*.5,380);
     this.lines(sketch,1,242,121,15,this.t,250);
