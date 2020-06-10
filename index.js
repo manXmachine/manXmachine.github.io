@@ -24,6 +24,9 @@ const vm = new window.Vue({
 			osc : 0,
 			t :0,
 			NUM_LINES:50,
+			count:10,
+			pulse:5,
+			div:1,
 			colorsPalette : ["#FF4500","#FC9900","#99AA99"],
 			words : [ "fearful", "scared", "anxious", "optimsitic", "happy", "thankful" ],
 			
@@ -34,22 +37,29 @@ const vm = new window.Vue({
 
 	setup(sketch) {
 		  sketch.createCanvas(sketch.windowWidth,sketch.windowHeight);
+		  sketch.createLoop({duration:15,gif:true})
      },
     
     draw(sketch){
     	sketch.background(0);
     	this.lines(sketch,1,242,226,196,this.t*2,sketch.windowHeight/4);
-    	this.lines(sketch,1,242,185,15,this.t*2,sketch.windowHeight/4+sketch.sin(this.t)*10);
-    this.lines(sketch,1,242,121,15,this.t,sketch.windowHeight/3+sketch.sin(this.t)*5);
-     this.lines(sketch,1,217,43,4,this.t,sketch.windowHeight/2.5);
-     this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*15);
-     this.lines(sketch,1,242,226,196,this.t,100);
+    	this.lines(sketch,1,242,185,15,this.t*2,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
+	   
+	     this.lines(sketch,1,217,43,4,this.t,sketch.windowHeight/2.5);
+	     this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
+	    
+
+	     this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
+	     this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
+	    
+
     /*this.lines(sketch,1,242,185,15,this.t*.5,380);
     this.lines(sketch,1,242,121,15,this.t,250);
      this.lines(sketch,1,217,43,4,this.t,140);
      this.lines(sketch,1,28,108,140,this.t,640);*/
     	this.t += .2;
     	//console.log("this.t",this.t);
+
 	},
 
  	postMood : function () {
@@ -74,15 +84,15 @@ const vm = new window.Vue({
 		    sketch.translate(sketch.windowWidth/2,sketch.windowHeight/2);
 		    //sketch.blendMode(sketch.MULTIPLY);
 		    sketch.fill(r,g,b,255);
-		   	sketch.ellipse(0,0,100,100);
-		   	sketch.fill(0);
-		   	sketch.textAlign(sketch.CENTER, sketch.CENTER)
-		    sketch.text(this.words[sketch.floor(sketch.random(4))],0,0);
+		   	//sketch.ellipse(0,0,100,100);
+		   	//sketch.fill(0);
+		   	//sketch.textAlign(sketch.CENTER, sketch.CENTER)
+		    //sketch.text(this.words[sketch.floor(sketch.random(4))],0,0);
 		    //console.log(sketch.random(4));
-		    for (var i = 0; i < this.NUM_LINES; i++) {
-		       sketch.stroke(r,g,b, sketch.map(i,0,this.NUM_LINES,2,255));
-		       sketch.fill(r,g,b, sketch.map(i,0,this.NUM_LINES,2,255));
-		       sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
+		    for (var i = 0; i < this.count; i++) {
+		       sketch.stroke(r,g,b, sketch.map(i,0,this.count,2,255));
+		       sketch.fill(r,g,b, sketch.map(i,0,this.count,2,255));
+		       sketch.line(this.x1(sketch,_t + i/this.div,f), this.y1(sketch,_t + i/this.div,f), this.x2(sketch,_t + i/this.div,f), this.y2(sketch,_t + i/this.div,f)); 
 		       
     		}
 
