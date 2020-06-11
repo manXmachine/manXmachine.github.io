@@ -37,6 +37,10 @@
 			    <label for="formControlRange">Input 3</label>
 			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="20" v-model="speed">
 			  </div>
+
+			  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
+  Save
+</button>
 			</form>
 		</nav>
 	</div>
@@ -44,7 +48,7 @@
 	<script src="//unpkg.com/vue"></script>
 	<script src="//unpkg.com/http-vue-loader"></script>
 	<script src="//unpkg.com/vue-p5"></script>
-	<script src="//unpkg.com/p5.createloop@latest/dist/p5.createloop.js"></script>
+
 	<script src="//unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
 

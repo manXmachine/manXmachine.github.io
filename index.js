@@ -28,6 +28,7 @@ const vm = new window.Vue({
 			pulse:5,
 			speed:5,
 			weight:5,
+			record:false,
 			div:1,
 			colorsPalette : ["#FF4500","#FC9900","#99AA99"],
 			words : [ "fearful", "scared", "anxious", "optimsitic", "happy", "thankful" ],
@@ -39,7 +40,7 @@ const vm = new window.Vue({
 
 	setup(sketch) {
 		  sketch.createCanvas(sketch.windowWidth,sketch.windowHeight);
-		  sketch.createLoop({duration:15,gif:true})
+		  
      },
     
     draw(sketch){
@@ -47,12 +48,12 @@ const vm = new window.Vue({
     	this.lines(sketch,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
     	this.lines(sketch,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
 	   
-	     this.lines(sketch,1,217,43,4,this.t,sketch.windowHeight/2.5);
-	     this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
+	    this.lines(sketch,1,217,43,4,this.t,sketch.windowHeight/2.5);
+	    this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
 	    
 
-	     this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
-	     this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
+	    this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
+	    this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
 	    
 
     /*this.lines(sketch,1,242,185,15,this.t*.5,380);
@@ -60,9 +61,17 @@ const vm = new window.Vue({
      this.lines(sketch,1,217,43,4,this.t,140);
      this.lines(sketch,1,28,108,140,this.t,640);*/
     	this.t += .2;
-    	//console.log("this.t",this.t);
-
+    	console.log("this.record",this.record);
+    	if(this.record == true){
+    			this.record = false
+    		sketch.saveCanvas( 'closer-than-you-think', 'jpg');
+    	
+    	}
 	},
+
+	handleClick: function(){
+    	this.record = true;
+    },
 
  	postMood : function () {
 			let root = this
@@ -81,7 +90,7 @@ const vm = new window.Vue({
 		},
 	lines : function(sketch,w, r,  g,  b, _t, f) {
 
-		   sketch.strokeWeight(w);
+		    sketch.strokeWeight(w);
 		    sketch.push();
 		    sketch.translate(sketch.windowWidth/2,sketch.windowHeight/2);
 		    //sketch.blendMode(sketch.MULTIPLY);
