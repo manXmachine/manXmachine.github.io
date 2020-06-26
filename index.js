@@ -63,8 +63,21 @@ const vm = new window.Vue({
     	this.t += .2;
     	console.log("this.record",this.record);
     	if(this.record == true){
-    			this.record = false
-    		sketch.saveCanvas( 'closer-than-you-think', 'jpg');
+    		this.record = false;
+    		 pg = sketch.createGraphics(800, 800);
+    		 
+    		 this.lines(pg,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
+    	this.lines(pg,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
+	   
+	    this.lines(pg,1,217,43,4,this.t,sketch.windowHeight/2.5);
+	    this.lines(pg,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
+	    
+
+	    this.lines(pg,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
+	    this.lines(pg,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
+	    
+    		
+    		sketch.saveCanvas(pg, 'closer-than-you-think', 'jpg');
     	
     	}
 	},
@@ -92,20 +105,14 @@ const vm = new window.Vue({
 
 		    sketch.strokeWeight(w);
 		    sketch.push();
-		    sketch.translate(sketch.windowWidth/2,sketch.windowHeight/2);
-		    //sketch.blendMode(sketch.MULTIPLY);
-		    sketch.fill(r,g,b,255);
-		   	//sketch.ellipse(0,0,100,100);
-		   	//sketch.fill(0);
-		   	//sketch.textAlign(sketch.CENTER, sketch.CENTER)
-		    //sketch.text(this.words[sketch.floor(sketch.random(4))],0,0);
-		    //console.log(sketch.random(4));
+		    sketch.translate(sketch.width/2,sketch.height/2);
+		   
+		   	
 		    for (var i = 0; i < this.count; i++) {
 		       sketch.stroke(r,g,b, sketch.map(i,0,this.count,120,255));
-		       sketch.fill(r,g,b, sketch.map(i,0,this.count,120,255));
 		       sketch.line(this.x1(sketch,_t + i/this.div,f), this.y1(sketch,_t + i/this.div,f), this.x2(sketch,_t + i/this.div,f), this.y2(sketch,_t + i/this.div,f)); 
-		       
-    		}
+		   	
+		    }
 
     		sketch.pop();
 		},
