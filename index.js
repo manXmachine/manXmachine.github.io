@@ -77,7 +77,7 @@ const vm = new window.Vue({
 	    this.lines(pg,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
 	    
     		
-    		sketch.saveCanvas(pg, 'closer-than-you-think', 'jpg');
+    		sketch.saveCanvas(pg, 'parametric', 'jpg');
     	
     	}
 	},
