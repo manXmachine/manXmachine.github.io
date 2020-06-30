@@ -84,6 +84,7 @@ const vm = new window.Vue({
 
 	handleClick: function(){
     	this.record = true;
+      this.postMood();
     },
 
  	postMood : function () {
