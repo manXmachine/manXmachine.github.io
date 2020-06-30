@@ -85,6 +85,15 @@ const vm = new window.Vue({
 	handleClick: function(){
     	this.record = true;
       this.postMood();
+      this.getLastMood();
+    },
+
+  getLastMood() {
+      let root = this
+      axios.get(this.url).then((response) => {
+        console.log('Last mood', response.data)
+        root.currentMood = response.data.mood
+      })
     },
 
  	postMood : function () {
