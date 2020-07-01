@@ -29,6 +29,7 @@ const vm = new window.Vue({
 			speed:5,
 			weight:5,
 			record:false,
+      recordingStarted:false,
 			div:1,
 			colorsPalette : ["#FF4500","#FC9900","#99AA99"],
 			words : [ "fearful", "scared", "anxious", "optimsitic", "happy", "thankful" ],
@@ -38,12 +39,17 @@ const vm = new window.Vue({
 
 	methods: {
 
-	setup(sketch) {
+	 setup(sketch) {
 		  sketch.createCanvas(sketch.windowWidth,sketch.windowHeight);
+      this.pg = sketch.createGraphics(800, 800);
+     // this.capturer.;
+
+      //console.log("capturer", this.capturer);
 		  
      },
     
     draw(sketch){
+      
     	sketch.background(0);
     	this.lines(sketch,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
     	this.lines(sketch,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
@@ -54,33 +60,46 @@ const vm = new window.Vue({
 
 	    this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
 	    this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
-	    
+	   //console.log("this.pg", this.pg);
 
-    /*this.lines(sketch,1,242,185,15,this.t*.5,380);
-    this.lines(sketch,1,242,121,15,this.t,250);
+     /*this.lines(sketch,1,242,185,15,this.t*.5,380);
+     this.lines(sketch,1,242,121,15,this.t,250);
      this.lines(sketch,1,217,43,4,this.t,140);
      this.lines(sketch,1,28,108,140,this.t,640);*/
     	this.t += .2;
-    	console.log("this.record",this.record);
-    	if(this.record == true){
-    		this.record = false;
-    		 pg = sketch.createGraphics(800, 800);
-    		 
-    		 this.lines(pg,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
-    	this.lines(pg,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
+    	
+    if(this.record == true){
+
+      if(this.recordingStarted == false){
+    	   this.recordingStarted = true;
+        this.capturer.start();
+
+        }
+        
+    		  this.pg.background(0); 
+    	this.lines(this.pg,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
+    	this.lines(this.pg,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
 	   
-	    this.lines(pg,1,217,43,4,this.t,sketch.windowHeight/2.5);
-	    this.lines(pg,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
+	    this.lines(this.pg,1,217,43,4,this.t,sketch.windowHeight/2.5);
+	    this.lines(this.pg,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
 	    
 
-	    this.lines(pg,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
-	    this.lines(pg,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
-	    
+	    this.lines(this.pg,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
+	    this.lines(this.pg,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
+	    this.capturer.capture(this.pg.canvas);
     		
-    		sketch.saveCanvas(pg, 'parametric', 'jpg');
-    	
-    	}
-	},
+    		//sketch.saveCanvas(pg, 'parametric', 'jpg');
+    	if(sketch.frameCount % 500 == 0){
+
+        this.record = false;
+        this.recordingStarted = false;
+    	  this.capturer.stop()
+        this.capturer.save()
+
+       }
+
+      }
+	 },
 
 	handleClick: function(){
     	this.record = true;
@@ -146,8 +165,13 @@ const vm = new window.Vue({
 
 	created() {
 
-		
-
+		this.capturer = new CCapture({
+        format: 'gif', workersPath: './',
+        verbose: false, display: false,
+        framerate: 30, frameLimit: 500
+      });
+    //this.capturer.start();
+  
 	}
 
 })
