@@ -15,24 +15,32 @@ const vm = new window.Vue({
 			salutation: 'Hello',
 			currentMood: '',
 			url: config.apiURL || 'http://localhost',
-			n1 : 1.3,
-			n2 : 0.3,
-			n3 : 0.3,
-			m : 53,
-			a : 1,
-			b : 1,
-			osc : 0,
-			t :0,
-			NUM_LINES:50,
-			count:10,
-			pulse:5,
-			speed:5,
-			weight:5,
+		  t :0,
+
+			myCount:10,
+			myPulse:5,
+			mySpeed:5,
+			myWeight:5,
+      myDiv:1,
+
+
+      oneCount:5,
+      onePulse:2,
+      oneSpeed:2,
+      oneWeight:2,
+      oneDiv:1,
+
+
+      twoCount:5,
+      twoPulse:2,
+      twoSpeed:2,
+      twoWeight:2,
+      twoDiv:1,
+
 			record:false,
       recordingStarted:false,
-			div:1,
+			
 			colorsPalette : ["#FF4500","#FC9900","#99AA99"],
-			words : [ "fearful", "scared", "anxious", "optimsitic", "happy", "thankful" ],
 			
 		}
 	},
@@ -42,54 +50,47 @@ const vm = new window.Vue({
 	 setup(sketch) {
 		  sketch.createCanvas(sketch.windowWidth,sketch.windowHeight);
       this.pg = sketch.createGraphics(800, 800);
-     // this.capturer.;
-
-      //console.log("capturer", this.capturer);
-		  
-     },
+    },
     
     draw(sketch){
       
     	sketch.background(0);
-    	this.lines(sketch,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
-    	this.lines(sketch,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
+    	this.lines(sketch,this.myWeight,242,226,196,this.t*this.mySpeed,sketch.windowHeight/4,this.myDiv,this.myCount);
+    	this.lines(sketch,this.myWeight,242,185,15,this.t*this.mySpeed,sketch.windowHeight/4+sketch.sin(this.t)*this.myPulse,this.myDiv,this.myCount);
+
+      this.lines(sketch,this.oneWeight,217,43,4,this.t*this.oneSpeed,sketch.windowHeight/2.5,this.oneDiv,this.oneCount);
+      this.lines(sketch,this.oneWeight,28,108,140,this.t*this.oneSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.onePulse,this.oneDiv,this.oneCount);
 	   
-	    this.lines(sketch,1,217,43,4,this.t,sketch.windowHeight/2.5);
-	    this.lines(sketch,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
-	    
+	 
 
-	    this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
-	    this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
-	   //console.log("this.pg", this.pg);
-
-     /*this.lines(sketch,1,242,185,15,this.t*.5,380);
-     this.lines(sketch,1,242,121,15,this.t,250);
-     this.lines(sketch,1,217,43,4,this.t,140);
-     this.lines(sketch,1,28,108,140,this.t,640);*/
-    	this.t += .2;
+	    //this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
+	    //this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
+	  
+    	
     	
     if(this.record == true){
 
       if(this.recordingStarted == false){
-    	   this.recordingStarted = true;
+    	  this.recordingStarted = true;
         this.capturer.start();
-
-        }
+       }
         
-    		  this.pg.background(0); 
-    	this.lines(this.pg,this.weight,242,226,196,this.t*this.speed,sketch.windowHeight/4);
-    	this.lines(this.pg,this.weight,242,185,15,this.t*this.speed,sketch.windowHeight/4+sketch.sin(this.t)*this.pulse);
-	   
-	    this.lines(this.pg,1,217,43,4,this.t,sketch.windowHeight/2.5);
-	    this.lines(this.pg,1,28,108,140,this.t,sketch.windowHeight/2.5+sketch.sin(this.t)*this.pulse);
+    	this.pg.background(0); 
+    	this.lines(this.pg,this.myWeight,242,226,196,this.t*this.mySpeed,sketch.windowHeight/4,this.myDiv,this.myCount);
+      this.lines(this.pg,this.myWeight,242,185,15,this.t*this.mySpeed,sketch.windowHeight/4+sketch.sin(this.t)*this.myPulse,this.myDiv,this.myCount);
+     
+	    this.lines(this.pg,this.oneWeight,217,43,4,this.t*this.oneSpeed,sketch.windowHeight/2.5,this.oneDiv,this.oneCount);
+      this.lines(this.pg,this.oneWeight,28,108,140,this.t*this.oneSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.onePulse,this.oneDiv,this.oneCount);
+     
+   
 	    
 
-	    this.lines(this.pg,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
-	    this.lines(this.pg,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
+	    //this.lines(this.pg,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
+	    //this.lines(this.pg,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
 	    this.capturer.capture(this.pg.canvas);
     		
-    		//sketch.saveCanvas(pg, 'parametric', 'jpg');
-    	if(sketch.frameCount % 500 == 0){
+    	
+    	if(sketch.frameCount % 50 == 0){
 
         this.record = false;
         this.recordingStarted = false;
@@ -99,15 +100,17 @@ const vm = new window.Vue({
        }
 
       }
+
+      this.t += .2;
 	 },
 
 	handleClick: function(){
     	this.record = true;
-      this.postMood();
-      this.getLastMood();
+      this.postMine();
+      this.getOthers();
     },
 
-  getLastMood() {
+  getOthers() {
       let root = this
       axios.get(this.url).then((response) => {
         console.log('Last mood', response.data)
@@ -115,7 +118,7 @@ const vm = new window.Vue({
       })
     },
 
- 	postMood : function () {
+ 	postMine : function () {
 			let root = this
 			//let previousIcon = this.currentIcon
 
@@ -130,16 +133,16 @@ const vm = new window.Vue({
 				console.log('ERROR:', response)
 			})
 		},
-	lines : function(sketch,w, r,  g,  b, _t, f) {
+	lines : function(sketch,w, r,  g,  b, _t, f, _div, _count) {
 
 		    sketch.strokeWeight(w);
 		    sketch.push();
 		    sketch.translate(sketch.width/2,sketch.height/2);
 		   
 		   	
-		    for (var i = 0; i < this.count; i++) {
-		       sketch.stroke(r,g,b, sketch.map(i,0,this.count,120,255));
-		       sketch.line(this.x1(sketch,_t + i/this.div,f), this.y1(sketch,_t + i/this.div,f), this.x2(sketch,_t + i/this.div,f), this.y2(sketch,_t + i/this.div,f)); 
+		    for (var i = 0; i < _count; i++) {
+		       sketch.stroke(r,g,b, sketch.map(i,0,_count,120,255));
+		       sketch.line(this.x1(sketch,_t + i/_div,f), this.y1(sketch,_t + i/_div,f), this.x2(sketch,_t + i/_div,f), this.y2(sketch,_t + i/_div,f)); 
 		   	
 		    }
 
@@ -168,7 +171,7 @@ const vm = new window.Vue({
 		this.capturer = new CCapture({
         format: 'gif', workersPath: './',
         verbose: false, display: false,
-        framerate: 30, frameLimit: 500
+        framerate: 30, frameLimit: 100
       });
     //this.capturer.start();
   
