@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PARAMETRIC</title>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div id="app" class="page">
+		<div id="app">
+  			<vue-p5 v-on="{setup, draw}"></vue-p5>
+		</div>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <form class="form-inline">
+			  <div class="form-group">
+			    <label for="formControlRange">Is your life now more simple or more complex than it was 3 months ago?</label>
+			    <input type="range" class="form-control-range" id="formControlRange" min="10" max="50" v-model="myCount">
+ 				</div>
+ 				<div class="form-group">
+			    <label for="formControlRange">How do you feel about significant relationships in your life? Especially those people who you were unable
+to physically be with - are you in sync with them or do you feel out of step.</label>
+			    <input type="range" class="form-control-range" id="formControlRange" min="5" max="15" v-model="myPulse">
+			  </div>
+			  <div class="form-group">
+			    <label for="formControlRange">In general how does your future look ?</label>
+			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="4" v-model="myWeight">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="formControlRange">When you think about what your life could be like in the next 3 months how do you feel?</label>
+			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="20" v-model="mySpeed">
+			  </div>
+
+			  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
+  Save
+</button>
+			</form>
+		</nav>
+	</div>
+	
+	<script src="//unpkg.com/vue"></script>
+	<script src="//unpkg.com/http-vue-loader"></script>
+	<script src="//unpkg.com/vue-p5"></script>
+	<script src=//cdn.JsDelivr.net/npm/ccapture.js></script>
+
+	<script src="//unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
+	<script src="gif.worker.js"></script>
+	<script src="config.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

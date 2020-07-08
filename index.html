@@ -9,51 +9,18 @@
 
 <body>
 	<div id="app" class="page">
-		<div id="app">
-  			<vue-p5 v-on="{setup, draw}"></vue-p5>
-		</div>
+		<h1>Parametric</h1>
+		Parametric is an interactive digital artwork that investigates our individual and collective emotional state in a post isolated world to create unique pieces of art.
 
-		<nav class="navbar fixed-bottom navbar-dark bg-dark">
-		  <form class="form-inline">
-			  <div class="form-group">
-			    <label for="formControlRange">Input 1</label>
-			    <input type="range" class="form-control-range" id="formControlRange" min="10" max="50" v-model="myCount">
- 				</div>
- 				<div class="form-group">
-			    <label for="formControlRange">Input 2</label>
-			    <input type="range" class="form-control-range" id="formControlRange" min="-5" max="5" v-model="myDiv">
-			  </div>
+You are invited to input your feelings on a sliding scale across a series of questions about how you feel about your life and relationships. Each input changes the artwork and renders a morphing and shifting piece of art on the screen before your very eyes.
 
-			  <div class="form-group">
-			    <label for="formControlRange">Input 3</label>
-			    <input type="range" class="form-control-range" id="formControlRange" min="5" max="15" v-model="myPulse">
-			  </div>
-			  <div class="form-group">
-			    <label for="formControlRange">Input 3</label>
-			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="4" v-model="myWeight">
-			  </div>
+When you’re ready to share into the “cloud”, your data will be merged with other people’s data, creating a dynamic piece of art that displays our collective feelings in real-time.
 
-			  <div class="form-group">
-			    <label for="formControlRange">Input 3</label>
-			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="20" v-model="mySpeed">
-			  </div>
-
-			  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
-  Save
-</button>
-			</form>
-		</nav>
+<a href="/app">Enter</a>
+		
 	</div>
 	
-	<script src="//unpkg.com/vue"></script>
-	<script src="//unpkg.com/http-vue-loader"></script>
-	<script src="//unpkg.com/vue-p5"></script>
-	<script src=//cdn.JsDelivr.net/npm/ccapture.js></script>
+	
 
-	<script src="//unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
-	<script src="gif.worker.js"></script>
-	<script src="config.js"></script>
-	<script src="index.js"></script>
-</body>
+	
 </html>
