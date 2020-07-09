@@ -1,0 +1,27 @@
+/**
+ *
+ * [NEWTHEMENAME]
+ * Basic styles only - uses CDNs for Bootstrap, FontAwesome, etc.
+ *
+ */
+
+@import "mixins";
+@import "variables";
+@import "bootstrap/scss/utilities/spacing"; // Need this include for writing spacing/padding classes in the HTML e.g. mr-1
+
+
+// Core Styles
+@import "base";
+@import "wp-classes";
+@import "admin";
+
+// Theme Styles
+@import "navbar"; // Basic navbar toggle / menu slide effects
+@import "front";
+@import "pages";
+@import "forms";
+
+@import "layout";
+
+
+

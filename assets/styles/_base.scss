@@ -1,0 +1,115 @@
+$gap: $grid-gutter-width / 2; // (15px typically)
+
+//
+// Base Styles
+// --------------------------------------------------
+
+html {
+  margin:0; 
+}
+
+body {
+  overflow-x:hidden;
+  margin:0; 
+  font-family: $primary-font; 
+  color: $default-color;
+}
+
+.hover {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+
+//
+// Typography
+// --------------------------------------------------
+
+a {
+  transition: all 0.2s ease-out;
+  color: $primary-color;
+}
+
+
+// All Headings
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
+  font-family: $headings-font;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.fa {
+  vertical-align: middle;
+}
+
+a[href^="tel"]{ color:inherit; text-decoration: none !important; }
+
+// Colors - build background/text/link colours from your theme-colors() variable
+@if variable-exists(theme-colors) {
+  @each $color, $value in $theme-colors {
+    .bg-#{$color} {
+      background-color: $value !important;
+    }
+    .has-#{$color}-color {
+      color: $value;
+    }
+    .has-#{$color}-background-color {
+        background-color: $value;
+    }
+    .text-#{$color} {
+      color: $value !important;
+    }   
+    .link-#{$color} a:not(.btn){
+      color: $value;
+    } 
+    .border-#{$color} {
+      border-color: $value !important;
+    }
+  }
+}
+
+//
+// TinyMCE settings
+// --------------------------------------------------
+body#tinymce {
+  margin: 12px !important;
+}
+
+
+// Notifications Banner
+// --------------------------------------------------
+
+// Default Banner
+.notifications-banner {
+  padding: 1rem 0rem;
+  left: 0;  
+  font-weight: bold;
+  width: 100%;
+  z-index: 9999999;
+  &:not(.fixed-bottom) { border-bottom: 1px solid rgba(#fff, 0.3); top: 0; }
+  &.fixed-bottom {  border-top: 1px solid rgba(#fff, 0.3); }
+  background-color: $gray-900;
+  color: #fff;
+  text-align: center;
+}
+
+// Christmas Banner
+.notifications-banner--xmas {
+  background-color: #a40111;  
+  background-image: url("//weareva.com.au/shared/images/christmas-bg.jpg");
+  background-size: cover;
+}
+
+// Primary colour
+.notifications-banner--primary {
+  background-color: $primary-color;
+}
+
+// Warning
+.notifications-banner--warning {
+  background-color: $yellow;
+  color: $gray-900;
+  @if global-variable-exists('warning') {
+    background-color: $warning;
+  }
+}
+// ------------- end notifications banner ------------

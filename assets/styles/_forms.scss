@@ -1,0 +1,93 @@
+.gform_wrapper {
+
+	.gform_fields {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		margin-right: -15px;
+    	margin-left: -15px;
+
+		li {
+			//padding: 0;
+			margin: 0 0 0.5em 0;
+			position: relative;
+
+			label {
+				//color: $primary-color;
+				font-size: 0.9em;
+			}
+			input, textarea {
+				font-size: 0.9rem;
+				color: $primary-color;
+				width: 100%;
+				padding: 0.5em;
+				border: none;
+			}
+			textarea {
+				height: 125px;
+			}
+			.ginput_complex span {
+				width: 49%;
+				display: inline-block;
+
+				label {
+					color: $primary-color;
+				}
+			}
+			&.gform_validation_container {
+				display: none;
+			}
+
+	
+		}
+	}
+	.gform_button {
+		transition: all 0.3s ease;
+		display: block;
+		padding: 0.5rem 0.9rem;
+		background: $primary-color;
+		font-size: 0.9em;
+		text-transform: uppercase;
+		//font-family: $headings-font;
+		color: $white;
+		border: solid 1px $white;
+		cursor: pointer;
+		font-size: 1rem;
+		line-height: 1;
+		&:hover {
+			background: $white;
+			color: $primary-color;
+		}
+	}
+
+	.validation_error {
+		background: $white;
+    	padding: 10px;
+    	font-size: 0.8rem;
+    	font-family: $headings-font;
+    	color: $secondary-color;
+    	margin-bottom: 10px;
+	}
+	.validation_message {
+		background: $white;
+    	padding: 10px;
+    	font-size: 0.7rem;
+    	color: $secondary-color;
+    	margin: 10px 0;
+    	background-image: url('../images/arrow-up.svg');
+    	background-position: 10px center;
+    	background-repeat: no-repeat;
+    	background-size: 12px;
+	    padding-left: 35px;
+	    line-height: 1;
+	}
+
+}
+.gform_confirmation_message {
+	font-family: $headings-font;
+	color: $white;
+	font-size: 1.1rem;
+}
+
