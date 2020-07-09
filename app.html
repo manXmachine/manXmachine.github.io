@@ -13,34 +13,83 @@
   			<vue-p5 v-on="{setup, draw}"></vue-p5>
 		</div>
 
-		<nav class="navbar fixed-bottom navbar-dark bg-dark">
-		  <form class="form-inline">
-			  <div class="form-group">
-			    <label for="formControlRange">Is your life now more simple or more complex than it was 3 months ago?</label>
-			    <input type="range" class="form-control-range" id="formControlRange" min="10" max="50" v-model="myCount">
- 				</div>
- 				<div class="form-group">
+	
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link" id="count-tab" data-toggle="count" href="#counter" role="tab" aria-controls="counter" aria-selected="true">Count</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pulse-tab" data-toggle="tab" href="#pulse" role="tab" aria-controls="pulse" aria-selected="false">Pulse</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="future-tab" data-toggle="tab" href="#future" role="tab" aria-controls="future" aria-selected="false">Future</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="feel-tab" data-toggle="tab" href="#feel" role="tab" aria-controls="feel" aria-selected="false">Feel</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" id="save-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save" aria-selected="false">Save</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" id="share-tab" data-toggle="tab" href="#share" role="tab" aria-controls="feel" aria-selected="false">Share</a>
+  </li>
+</ul>
+
+
+<div class="tab-content" id="myTabContent">
+  
+  <div class="tab-pane fade" id="counter" role="tabpanel" aria-labelledby="counter-tab">
+  	<div class="form-group">
+			  <label for="formControlRange">Is your life now more simple or more complex than it was 3 months ago?</label>
+			  <input type="range" class="form-control-range" id="formControlRange" min="10" max="50" v-model="myCount">
+ 		</div>
+	</div>
+  
+  <div class="tab-pane fade" id="pulse" role="tabpanel" aria-labelledby="pulse-tab">
+  	<div>
+  	<div class="form-group">
 			    <label for="formControlRange">How do you feel about significant relationships in your life? Especially those people who you were unable
 to physically be with - are you in sync with them or do you feel out of step.</label>
 			    <input type="range" class="form-control-range" id="formControlRange" min="5" max="15" v-model="myPulse">
 			  </div>
-			  <div class="form-group">
+  </div>
+  
+  <div class="tab-pane fade" id="future" role="tabpanel" aria-labelledby="future-tab">
+  	 <div class="form-group">
 			    <label for="formControlRange">In general how does your future look ?</label>
 			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="4" v-model="myWeight">
 			  </div>
+  </div>
 
-			  <div class="form-group">
+  <div class="tab-pane fade" id="feel" role="tabpanel" aria-labelledby="feel-tab">
+  	 <div class="form-group">
 			    <label for="formControlRange">When you think about what your life could be like in the next 3 months how do you feel?</label>
 			    <input type="range" class="form-control-range" id="formControlRange" min="1" max="20" v-model="mySpeed">
 			  </div>
-
-			  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
+  </div>
+  <div class="tab-pane fade" id="save" role="tabpanel" aria-labelledby="save-tab">
+  	 <div class="form-group">
+			     <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
   Save
-</button>
-			</form>
-		</nav>
+			  </div>
+  </div>
+
+   <div class="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
+  	 <div class="form-group">
+			    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
+  Share
+			  </div>
+  </div>
+
+
+</div>
 	</div>
 	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 	<script src="//unpkg.com/vue"></script>
 	<script src="//unpkg.com/http-vue-loader"></script>
 	<script src="//unpkg.com/vue-p5"></script>
