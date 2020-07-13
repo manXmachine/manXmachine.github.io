@@ -89,7 +89,7 @@ body {
   color: $black;
   border-color: $white;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     background: $secondary-color;
     border-color:: $secondary-color;
   }
@@ -100,6 +100,9 @@ body {
 
   &.logo-manxmachine {
     max-width: 200px;
+  }
+  @include media-breakpoint-down(md) {
+    max-width: 90%;
   }
 }
 

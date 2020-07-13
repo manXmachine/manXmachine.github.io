@@ -11,6 +11,11 @@
 		border-bottom: none;
 		li {
 			margin-right: 0.5em;
+			@include media-breakpoint-down(md) {
+				margin-bottom: 0.5em;
+				width: 48%;
+			}
+			
 		}
 		a {
 			border: solid 1px $white;
