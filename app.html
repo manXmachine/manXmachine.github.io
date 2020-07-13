@@ -30,6 +30,7 @@
 	<div id="app" class="app-page">
 		<div id="app">
   			<vue-p5 v-on="{setup, draw}"></vue-p5>
+        <h2 v-show="record">Please wait - creating GIF</h2>
 		</div>
 
 	<div class="controllers">
@@ -58,9 +59,9 @@
       to physically be with - are you close to them or do you feel out of step.</label>
             </div>
             <div class="col-md-12 d-flex align-items-center">
-              <i class="fad fa-walking fa-2x"></i> 
+              <i class="fad fa-hand-peace fa-2x"></i> 
                 <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" v-model="myPulse">
-              <i class="fad fa-running fa-2x"></i>
+              <i class="fad fa-hand-middle-finger fa-2x"></i>
             </div>
           </div>
         </div>
@@ -68,12 +69,12 @@
         <div class="tab-pane fade" id="future" role="tabpanel" aria-labelledby="future-tab">
            <div class="form-group row">
             <div class="col-md-12">
-                <label for="formControlRange">In general does your future seem fragile or strong  ?</label>
+                <label for="formControlRange">In general are you ready for the future  ?</label>
             </div>
             <div class="col-md-12 d-flex align-items-center">
-              <i class="far fa-sad-tear fa-2x"></i> 
+              <i class="far fa-battery-empty fa-2x"></i> 
                 <input type="range" class="mx-1 form-control-range" id="formControlRange" min="10" max="100" value="10" v-model="myWeight">
-              <i class="far fa-grin fa-2x"></i>
+              <i class="far fa-battery-full fa-2x"></i>
             </div>
           </div>
         </div>
@@ -84,9 +85,10 @@
                 <label for="formControlRange">When you think about what your life could be like in the next 3 months do you feel calm or anxious?</label>
             </div>
             <div class="col-md-12 d-flex align-items-center">
-              <i class="far fa-sad-tear fa-2x"></i> 
+             <i class="far fa-turtle fa-2x"></i>
                 <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" value="5" v-model="mySpeed">
-              <i class="far fa-grin fa-2x"></i>
+              
+               <i class="far fa-rabbit-fast fa-2x"></i> 
             </div>
           </div>
         </div>
