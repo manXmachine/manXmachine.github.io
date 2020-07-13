@@ -24,14 +24,14 @@ const vm = new window.Vue({
       myDiv:1,
 
 
-      oneCount:5,
+      oneCount:0,
       onePulse:2,
       oneSpeed:2,
       oneWeight:2,
       oneDiv:1,
 
 
-      twoCount:5,
+      twoCount:0,
       twoPulse:2,
       twoSpeed:2,
       twoWeight:2,
@@ -55,17 +55,24 @@ const vm = new window.Vue({
     draw(sketch){
       
     	sketch.background(0);
-    	this.lines(sketch,this.myWeight,242,226,196,this.t*this.mySpeed,sketch.windowHeight/4,this.myDiv,this.myCount);
-    	this.lines(sketch,this.myWeight,242,185,15,this.t*this.mySpeed,sketch.windowHeight/4+sketch.sin(this.t)*this.myPulse,this.myDiv,this.myCount);
+    	
+      if(this.oneCount != 0){
+        this.lines(sketch,this.oneWeight,217,43,4,this.t*this.oneSpeed,sketch.windowHeight/2.5,this.oneDiv,this.oneCount);
+        this.lines(sketch,this.oneWeight,28,108,140,this.t*this.oneSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.onePulse,this.oneDiv,this.oneCount);
+      }
 
-      this.lines(sketch,this.oneWeight,217,43,4,this.t*this.oneSpeed,sketch.windowHeight/2.5,this.oneDiv,this.oneCount);
-      this.lines(sketch,this.oneWeight,28,108,140,this.t*this.oneSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.onePulse,this.oneDiv,this.oneCount);
-	   
+      
+       if(this.twoCount != 0){
+        this.lines(sketch,this.twoWeight,217,43,4,this.t*this.twoSpeed,sketch.windowHeight/2.5,this.twoDiv,this.twoCount);
+        this.lines(sketch,this.twoWeight,28,108,140,this.t*this.twoSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.twoPulse,this.twoDiv,this.twoCount);
+        }
 	 
 
-	    //this.lines(sketch,1,227,43,4,this.t/2,sketch.windowHeight/3.5);
-	    //this.lines(sketch,1,228,108,140,this.t/2,sketch.windowHeight/3.5+sketch.sin(this.t)*this.pulse);
-	  
+
+      this.lines(sketch,this.myWeight,242,226,196,this.t*this.mySpeed,sketch.windowHeight/4,this.myDiv,this.myCount);
+      this.lines(sketch,this.myWeight,242,185,15,this.t*this.mySpeed,sketch.windowHeight/4+sketch.sin(this.t)*this.myPulse,this.myDiv,this.myCount);
+
+	    
     	
     	
     if(this.record == true){
@@ -104,13 +111,42 @@ const vm = new window.Vue({
       this.t += .2;
 	 },
 
-	handleClick: function(){
-    	this.record = true;
-      this.postMine();
+  handleShare: function(){
+      this.record = true;
+      
+    },
+
+	handleSave: function(){
+    	
+      
       this.getOthers();
+      
+      this.postMine();
     },
 
   getOthers() {
+      let root = this
+      axios.get(this.url+"?limit=2").then((response) => {
+        console.log('others', response.data)
+
+        //root.currentMood = response.data.mood
+        this.oneCount = response.data[0].count;
+        this.onePulse = response.data[0].pulse;
+        this.oneSpeed = response.data[0].speed;
+        this.oneWeight = response.data[0].weight;
+        this.oneDiv = response.data[0].div;
+
+
+        this.twoCount = response.data[1].count;
+        this.twoPulse = response.data[1].pulse;
+        this.twoSpeed = response.data[1].speed;
+        this.twoWeight = response.data[1].weight;
+        this.twoDiv = response.data[1].div;
+
+      })
+    },
+
+   getTwo() {
       let root = this
       axios.get(this.url).then((response) => {
         console.log('Last mood', response.data)
@@ -120,15 +156,15 @@ const vm = new window.Vue({
 
  	postMine : function () {
 			let root = this
-			//let previousIcon = this.currentIcon
-
-			//this.currentIcon = this.loadingIcon
-
 			axios.post(this.url, {
-				mood: "happy"
-			}).then((response) => {
+				count:this.myCount,
+        pulse:this.myPulse,
+        speed:this.mySpeed,
+        weight:this.myWeight,
+        div:this.myDiv,
+
+       }).then((response) => {
 				console.log('OK:', response)
-				//root.currentIcon = previousIcon
 			}).catch((response) => {
 				console.log('ERROR:', response)
 			})
