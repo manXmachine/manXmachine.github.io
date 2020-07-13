@@ -17,10 +17,10 @@ const vm = new window.Vue({
 			url: config.apiURL || 'http://localhost',
 		  t :0,
 
-			myCount:10,
-			myPulse:5,
+			myCount:100,
+			myPulse:10,
 			mySpeed:5,
-			myWeight:5,
+			myWeight:10,
       myDiv:1,
 
 
@@ -57,20 +57,20 @@ const vm = new window.Vue({
     	sketch.background(0);
     	
       if(this.oneCount != 0){
-        this.lines(sketch,this.oneWeight,217,43,4,this.t*this.oneSpeed,sketch.windowHeight/2.5,this.oneDiv,this.oneCount);
-        this.lines(sketch,this.oneWeight,28,108,140,this.t*this.oneSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.onePulse,this.oneDiv,this.oneCount);
+        this.lines(sketch,this.oneWeight/10,217,43,4,this.t*this.oneSpeed/100,sketch.windowHeight/2.5,this.oneDiv,this.oneCount/10);
+        this.lines(sketch,this.oneWeight/10,28,108,140,this.t*this.oneSpeed/100,sketch.windowHeight/2.5+sketch.sin(this.t)*this.onePulse/10,this.oneDiv,this.oneCount/10);
       }
 
       
        if(this.twoCount != 0){
-        this.lines(sketch,this.twoWeight,217,43,4,this.t*this.twoSpeed,sketch.windowHeight/2.5,this.twoDiv,this.twoCount);
-        this.lines(sketch,this.twoWeight,28,108,140,this.t*this.twoSpeed,sketch.windowHeight/2.5+sketch.sin(this.t)*this.twoPulse,this.twoDiv,this.twoCount);
+        this.lines(sketch,this.twoWeight/10,217,43,4,this.t*this.twoSpeed/100,sketch.windowHeight/2.5,this.twoDiv,this.twoCount/10);
+        this.lines(sketch,this.twoWeight/228,108,140,this.t*this.twoSpeed/100,sketch.windowHeight/2.5+sketch.sin(this.t)*this.twoPulse/10,this.twoDiv,this.twoCount/10);
         }
 	 
 
 
-      this.lines(sketch,this.myWeight,242,226,196,this.t*this.mySpeed,sketch.windowHeight/4,this.myDiv,this.myCount);
-      this.lines(sketch,this.myWeight,242,185,15,this.t*this.mySpeed,sketch.windowHeight/4+sketch.sin(this.t)*this.myPulse,this.myDiv,this.myCount);
+      this.lines(sketch,this.myWeight/10,242,226,196,this.t*this.mySpeed/100,sketch.windowHeight/4-sketch.sin(this.t)*this.myPulse/10,this.myDiv,this.myCount/10);
+      this.lines(sketch,this.myWeight/10,242,185,15,this.t*this.mySpeed/100,sketch.windowHeight/4+sketch.sin(this.t)*this.myPulse/10,this.myDiv,this.myCount/10);
 
 	    
     	

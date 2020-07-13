@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="fad fa-signal-1 fa-2x"></i> 
-              <input type="range" class="mx-1 form-control-range" id="formControlRange" min="10" max="50" v-model="myCount">
+              <input type="range" class="mx-1 form-control-range" id="formControlRange" min="100" max="500" value="100" v-model="myCount">
               <i class="fad fa-signal fa-2x"></i>
             </div>
           </div>
@@ -46,11 +46,11 @@
           <div class="form-group row">
             <div class="col-md-12">
                 <label for="formControlRange">How do you feel about significant relationships in your life? Especially those people who you were unable
-      to physically be with - are you in sync with them or do you feel out of step.</label>
+      to physically be with - are you close to them or do you feel out of step.</label>
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="fad fa-walking fa-2x"></i> 
-                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="5" max="15" v-model="myPulse">
+                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" v-model="myPulse">
               <i class="fad fa-running fa-2x"></i>
             </div>
           </div>
@@ -59,11 +59,11 @@
         <div class="tab-pane fade" id="future" role="tabpanel" aria-labelledby="future-tab">
            <div class="form-group row">
             <div class="col-md-12">
-                <label for="formControlRange">In general how does your future look ?</label>
+                <label for="formControlRange">In general does your future seem fragile or strong  ?</label>
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="far fa-sad-tear fa-2x"></i> 
-                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="4" v-model="myWeight">
+                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="10" max="100" value="10" v-model="myWeight">
               <i class="far fa-grin fa-2x"></i>
             </div>
           </div>
@@ -72,27 +72,35 @@
         <div class="tab-pane fade" id="feel" role="tabpanel" aria-labelledby="feel-tab">
            <div class="form-group row">
             <div class="col-md-12">
-                <label for="formControlRange">When you think about what your life could be like in the next 3 months how do you feel?</label>
+                <label for="formControlRange">When you think about what your life could be like in the next 3 months do you feel calm or anxious?</label>
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="far fa-sad-tear fa-2x"></i> 
-                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="20" v-model="mySpeed">
+                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" value="5" v-model="mySpeed">
               <i class="far fa-grin fa-2x"></i>
             </div>
           </div>
         </div>
 
-        <div class="tab-pane fade" id="save" role="tabpanel" aria-labelledby="save-tab">
+        <div class="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
            <div class="form-group">
-                 <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
-        Save</button>
+
+            <div class="col-md-12">
+                <label for="saveButton">You can anonymously save your data to the cloud ask often as you wish. Upon saving PARAMTERIC will choose 2 other users to create a merged artwork.<label>
+            </div>
+                 <button id="saveButton" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleSave">
+        Save + Share</button>
               </div>
         </div>
 
-         <div class="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
+         <div class="tab-pane fade" id="download" role="tabpanel" aria-labelledby="download-tab">
            <div class="form-group">
-                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleClick">
-        Share</button>
+
+            <div class="col-md-12">
+                <label for="downloadButton">You can download an animated gif version for yourself and ,we hope for you to share  on social media. **this can take a little time. It will download automatically once rendered<label>
+            </div>
+                <button type="button" id="downloadButton" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleShare">
+        Download</button>
               </div>
         </div>
 
@@ -113,11 +121,13 @@
           <li class="nav-item">
             <a class="nav-link" id="feel-tab" data-toggle="tab" href="#feel" role="tab" aria-controls="feel" aria-selected="false">Feel</a>
           </li>
+         
            <li class="nav-item">
-            <a class="nav-link" id="save-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save" aria-selected="false">Save</a>
+            <a class="nav-link" id="share-tab" data-toggle="tab" href="#share" role="tab" aria-controls="feel" aria-selected="false">Save + Share</a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" id="share-tab" data-toggle="tab" href="#share" role="tab" aria-controls="feel" aria-selected="false">Share</a>
+
+          <li class="nav-item">
+            <a class="nav-link" id=" download-tab" data-toggle="tab" href="#download" role="tab" aria-controls="feel" aria-selected="false">Download</a>
           </li>
         </ul>
 
