@@ -9,11 +9,11 @@ const vm = new window.Vue({
 
 	data() {
 		return {
-			salutation: 'Hello',
-			currentMood: '',
+			
+			createMode: true,
 			url: config.apiURL || 'http://localhost',
 		  t :0,
-      shareLink : "xx",
+      shareLink : "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/",
 			others : [{test:"test",weight:10, count:100,speed:5,pulse:10}],
 			colorsPalette : ["#a8e6fb","#faea68","#427abb","#e74865","#6f2e52","#d94d59","#25345b","#aa4853"],
 			
@@ -33,7 +33,7 @@ const vm = new window.Vue({
       
     
       for (var i = 0; i < this.others.length; i++) {
-        //console.log(this.colorsPalette[i]);
+        console.log(i);
         this.lines(sketch,this.others[i].weight/10,this.colorsPalette[i],this.t*this.others[i].speed/200,sketch.windowHeight/(2.5),Number(this.others[i].count)/10,this.others[i].pulse/2);
         //this.lines(sketch,1,this.colorsPalette[i],this.t*this.others[i].speed/100,sketch.windowHeight/(2.5+i/4)+sketch.sin(this.t/10)*this.others[i].pulse/100,this.others[i].div,Number(this.others[i].count)/10);
       }
@@ -46,21 +46,24 @@ const vm = new window.Vue({
   	 this.t += 2;
 	 },
 
- 
+   createShareLink: function () {
+      var json = btoa(JSON.stringify(this.others));
+      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
+     
+      console.log("encoded",json)
+   },
 
 	handleSave: function(){
     	this.getOthers();
       this.postMine();
       
-       var json = btoa(JSON.stringify(this.others));
-       this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
- // add visibiltiy here
-    },
+       
+  },
 
   getOthers() {
       let root = this
       //Starting at the 5th item, return 3 items from a collection of 10
-      axios.get(this.url+"?limit=7").then((response) => {
+      axios.get(this.url+"?limit=3").then((response) => {
       
       //this.others = [];
        
@@ -68,7 +71,8 @@ const vm = new window.Vue({
             this.others[i+1] = response.data[i] ;
             
         }
-      console.log("others:",this.others.length);
+      //console.log("others:",this.others.length);
+      this.createShareLink();
       })
     },
 
@@ -132,21 +136,31 @@ const vm = new window.Vue({
 
 	created() {
 
-		let uri = window.location.href.split('?');
+	let uri = window.location.href.split('?');
+    
     if (uri.length == 2)
     {
-      let vars = uri[1].split('&');
-      let getVars = {};
-      let tmp = '';
-      vars.forEach(function(v){
-        tmp = v.split('=');
-        if(tmp.length == 2)
-        getVars[tmp[0]] = tmp[1];
-      });
-      console.log(getVars);
-      // do 
+      this.createMode = false;
+      let a = uri[1].split('=');
+      console.log(a);
+      if(a[0] == 'archive'){
+        //we are good to go
+        this.createMode = false;
+         let d = atob(a[1]);
+         let da = JSON.parse(d);
+         for (var i = 0; i < da.length; i++) {
+            this.others[i] = da[i] ;
+            //console.log( "data", da[i]);
+         }
+      }
+      else{
+        ///some other arg that we can ignore
+        this.createMode = true
+      }
+    }else{
+
+      this.createMode = true
     }
-  
-	}
+  }
 
 })
