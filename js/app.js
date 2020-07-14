@@ -33,17 +33,9 @@ const vm = new window.Vue({
       
     
       for (var i = 0; i < this.others.length; i++) {
-        console.log(i);
         this.lines(sketch,this.others[i].weight/10,this.colorsPalette[i],this.t*this.others[i].speed/200,sketch.windowHeight/(2.5),Number(this.others[i].count)/10,this.others[i].pulse/2);
-        //this.lines(sketch,1,this.colorsPalette[i],this.t*this.others[i].speed/100,sketch.windowHeight/(2.5+i/4)+sketch.sin(this.t/10)*this.others[i].pulse/100,this.others[i].div,Number(this.others[i].count)/10);
-      }
-        
-      //this.lines(sketch,this.myWeight/10,this.colorsPalette[0],this.t*this.mySpeed/100,sketch.windowHeight/4,this.myCount/10,this.myPulse);
-      //this.lines(sketch,this.others[0].weight/10,this.colorsPalette[0],this.t*this.others[0].speed/200,sketch.windowHeight/(10),Number(this.others[0].count)/10,this.others[0].pulse/2);
-        
-      //this.lines(sketch,1,this.colorsPalette[1],this.t*this.mySpeed/100,sketch.windowHeight/4+sketch.sin(this.t/10)*this.myPulse/10,this.myDiv,this.myCount/10);
-
-  	 this.t += 2;
+       }
+      this.t += 2;
 	 },
 
    createShareLink: function () {
@@ -142,7 +134,7 @@ const vm = new window.Vue({
     {
       this.createMode = false;
       let a = uri[1].split('=');
-      console.log(a);
+      //console.log(a);
       if(a[0] == 'archive'){
         //we are good to go
         this.createMode = false;
