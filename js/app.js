@@ -15,7 +15,7 @@ const vm = new window.Vue({
 		  t :0,
       shareLink : "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/",
 			others : [{test:"test",weight:10, count:100,speed:5,pulse:10}],
-			colorsPalette : ["#a8e6fb","#faea68","#427abb","#e74865","#6f2e52","#d94d59","#25345b","#aa4853"],
+			colorsPalette : ["#feb914","#fe8826","#2c9fa2","#f03812","#b21236","#6f2e52","#d94d59","#25345b","#aa4853"],
 			
 		}
 	},
