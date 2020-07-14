@@ -47,6 +47,7 @@
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="fad fa-signal-1 fa-2x"></i> 
+              <!-- news icons here -->
               <input type="range" class="mx-1 form-control-range" id="formControlRange" min="100" max="500" value="100" v-model="myCount">
               <i class="fad fa-signal fa-2x"></i>
             </div>
@@ -100,7 +101,7 @@
 
             <div class="col-md-12">
 
-                <label for="saveButton">You can anonymously save your data to the cloud ask often as you wish. Upon saving PARAMTERIC will choose 2 other users to create a merged artwork.</label>
+                <label for="saveButton">You can save your data to the cloud as often as you wish. Upon saving PARAMTERIC will randomly choose 2 (5) other users to create a merged artwork.</label>
 
                 <button id="saveButton" type="button" class="mt-1 btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleSave">
         Save + Share</button>
@@ -110,20 +111,7 @@
             </div>
         </div>
 
-         <div class="tab-pane fade" id="download" role="tabpanel" aria-labelledby="download-tab">
-           <div class="form-group row">
-
-            <div class="col-md-12">
-
-                <label for="downloadButton">You can download an animated gif version for yourself and, we hope for you to share  on social media. **this can take a little time. It will download automatically once rendered</label>
-
-                <button type="button" id="downloadButton" class="d-block mt-1 btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleShare">
-        Download</button>
-
-           
-                
-            </div>
-        </div>
+         
 
 
         </div><!--// .tab-content -->
@@ -133,23 +121,24 @@
           <li class="nav-item">
             <a class="nav-link active" id="count-tab" data-toggle="tab" href="#counter" role="tab" aria-controls="counter" aria-selected="true">Spectrum</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" id="feel-tab" data-toggle="tab" href="#feel" role="tab" aria-controls="feel" aria-selected="false">Speed</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" id="pulse-tab" data-toggle="tab" href="#pulse" role="tab" aria-controls="pulse" aria-selected="false">Pulse</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="future-tab" data-toggle="tab" href="#future" role="tab" aria-controls="future" aria-selected="false">Charge</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="feel-tab" data-toggle="tab" href="#feel" role="tab" aria-controls="feel" aria-selected="false">Speed</a>
-          </li>
+          
          
            <li class="nav-item">
             <a class="nav-link" id="share-tab" data-toggle="tab" href="#share" role="tab" aria-controls="feel" aria-selected="false">Save + Share</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" id=" download-tab" data-toggle="tab" href="#download" role="tab" aria-controls="feel" aria-selected="false">Download</a>
-          </li>
+          
         </ul>
 
       </div> <!--// .controllers -->
