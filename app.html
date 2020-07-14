@@ -32,7 +32,7 @@
 	<div id="app" class="app-page">
 		<div id="app">
   			<vue-p5 v-on="{setup, draw}"></vue-p5>
-        <h2 v-show="record">Please wait - creating GIF</h2>
+        
 		</div>
 
 	<div class="controllers">
@@ -48,7 +48,7 @@
             <div class="col-md-12 d-flex align-items-center">
               <i class="fad fa-signal-1 fa-2x"></i> 
               <!-- news icons here -->
-              <input type="range" class="mx-1 form-control-range" id="formControlRange" min="100" max="500" value="100" v-model="myCount">
+              <input type="range" class="mx-1 form-control-range" id="formControlRange" min="100" max="1000" value="100" v-model="others[0].count">
               <i class="fad fa-signal fa-2x"></i>
             </div>
           </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="fad fa-hand-peace fa-2x"></i> 
-                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" v-model="myPulse">
+                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" v-model="others[0].pulse">
               <i class="fad fa-hand-middle-finger fa-2x"></i>
             </div>
           </div>
@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-12 d-flex align-items-center">
               <i class="far fa-battery-empty fa-2x"></i> 
-                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="10" max="100" value="10" v-model="myWeight">
+                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="10" max="100" value="10" v-model="others[0].weight">
               <i class="far fa-battery-full fa-2x"></i>
             </div>
           </div>
@@ -89,7 +89,7 @@
             </div>
             <div class="col-md-12 d-flex align-items-center">
              <i class="far fa-turtle fa-2x"></i>
-                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" value="5" v-model="mySpeed">
+                <input type="range" class="mx-1 form-control-range" id="formControlRange" min="1" max="100" value="5" v-model="others[0].speed">
               
                <i class="far fa-rabbit-fast fa-2x"></i> 
             </div>
@@ -104,6 +104,8 @@
                 <label for="saveButton">You can save your data to the cloud as often as you wish. Upon saving PARAMTERIC will randomly choose 2 (5) other users to create a merged artwork.</label>
 
                 <button id="saveButton" type="button" class="mt-1 btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleSave">
+                  <button id="shareButton" type="button" class="mt-1 btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleShare">
+                 
         Save + Share</button>
 
             </div>
