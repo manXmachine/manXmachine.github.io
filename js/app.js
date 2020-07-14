@@ -28,10 +28,7 @@ const vm = new window.Vue({
     },
     
     draw(sketch){
-      
-    	sketch.background(0);
-      
-    
+      sketch.background(0);
       for (var i = 0; i < this.others.length; i++) {
         this.lines(sketch,this.others[i].weight/10,this.colorsPalette[i],this.t*this.others[i].speed/200,sketch.windowHeight/(2.5),Number(this.others[i].count)/10,this.others[i].pulse/2);
        }
@@ -39,7 +36,7 @@ const vm = new window.Vue({
 	 },
 
    createShareLink: function () {
-      var json = btoa(JSON.stringify(this.others));
+      var json = encodeURIComponent(btoa(JSON.stringify(this.others)));
       this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
      
       console.log("encoded",json)
@@ -138,12 +135,18 @@ const vm = new window.Vue({
       if(a[0] == 'archive'){
         //we are good to go
         this.createMode = false;
-         let d = atob(a[1]);
-         let da = JSON.parse(d);
-         for (var i = 0; i < da.length; i++) {
-            this.others[i] = da[i] ;
-            //console.log( "data", da[i]);
-         }
+        console.log( "a[1]", a[1])
+        console.log( "decode", decodeURIComponent(a[1]))
+
+        
+        let d = decodeURIComponent(a[1]);
+        d = atob(d);
+        console.log( "d", d);
+        let da = JSON.parse(d);
+        for (var i = 0; i < da.length; i++) {
+          this.others[i] = da[i] ;
+          //console.log( "data", da[i]);
+        }
       }
       else{
         ///some other arg that we can ignore
