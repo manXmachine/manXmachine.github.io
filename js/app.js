@@ -1,13 +1,10 @@
-const load = (component) => { 
-	return window.httpVueLoader('components/' + component + '.vue')
-}
+
 
 const vm = new window.Vue({
 
 	el: '#app',
-
-	components: {
-		'mood-button': load('mood-button'),
+  components: {
+		
 	},
 
 	data() {
@@ -16,29 +13,8 @@ const vm = new window.Vue({
 			currentMood: '',
 			url: config.apiURL || 'http://localhost',
 		  t :0,
-
-			myCount:100,
-			myPulse:10,
-			mySpeed:5,
-			myWeight:10,
-      myDiv:1,
-
-
-      oneCount:0,
-      onePulse:2,
-      oneSpeed:2,
-      oneWeight:2,
-      oneDiv:1,
-
-
-      twoCount:0,
-      twoPulse:2,
-      twoSpeed:2,
-      twoWeight:2,
-      twoDiv:1,
-
+      shareLink : "xx",
 			others : [{test:"test",weight:10, count:100,speed:5,pulse:10}],
-			
 			colorsPalette : ["#a8e6fb","#faea68","#427abb","#e74865","#6f2e52","#d94d59","#25345b","#aa4853"],
 			
 		}
@@ -67,20 +43,18 @@ const vm = new window.Vue({
         
       //this.lines(sketch,1,this.colorsPalette[1],this.t*this.mySpeed/100,sketch.windowHeight/4+sketch.sin(this.t/10)*this.myPulse/10,this.myDiv,this.myCount/10);
 
-  	 this.t += .2;
+  	 this.t += 2;
 	 },
 
-  handleShare: function(){
-      var json = btoa(JSON.stringify(this.others));
-      console.log("json",json)
-    },
+ 
 
 	handleSave: function(){
     	this.getOthers();
       this.postMine();
       
-      
-     
+       var json = btoa(JSON.stringify(this.others));
+       this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
+ // add visibiltiy here
     },
 
   getOthers() {
