@@ -134,7 +134,7 @@ const vm = new window.Vue({
 
 	created() {
 
-	let uri = window.location.href.split('?');
+	  let uri = window.location.href.split('?');
     console.log(uri)
     if (uri.length == 2)
     {
@@ -144,12 +144,19 @@ const vm = new window.Vue({
       
         //we are good to go
         this.createMode = false;
-        //console.log( "url raw", uri[1]);
+        console.log( "url raw", uri[1]);
         let d = uri[1];
+        //fb addss studff like  &fbclid=IwAR1LAyBi5MdIQ0TPdVW05Tuv3WaFQcXIM2mOU_zTrcI1HonRHwVGJQ3ekZ0
+        
+        d = d.split('&');
+        console.log( "url raw split", d);
+        //split it off
+        d = d[0]
+        //and keep first half again
         console.log( "url raw", d);
         //console.log( "uri[1]", uri[1])
         //console.log( "decode", decodeURIComponent(uri[1]))
-        d = this.Base64DecodeUrl(d);
+        
         console.log( "decode url", d);
         d = atob(d);
         console.log( "decode64", d);
