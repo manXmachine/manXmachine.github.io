@@ -37,9 +37,11 @@ const vm = new window.Vue({
 
    createShareLink: function () {
       var json = btoa(JSON.stringify(this.others));
-      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+encodeURIComponent(json);
+      console.log("encoded 64",json);
+      var json = this.Base64EncodeUrl(json);
+      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
      
-      //console.log("encoded",encodeURIComponent(json));
+      console.log("encoded urk",encodeURIComponent(json));
    },
 
 	handleSave: function(){
@@ -97,7 +99,7 @@ const vm = new window.Vue({
 		   	}
 
         for (var i = 0; i < _count; i++) {
-           c.setAlpha(sketch.map(i,0,_count,50,100))
+           c.setAlpha(sketch.map(i,0,_count,50,200))
            sketch.stroke(c);
            f = f - sketch.sin(this.t)* _pulse/50;
            sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
@@ -121,39 +123,52 @@ const vm = new window.Vue({
 	 y2 : function( sketch,t, f){
 	     return sketch.cos(t/20) * f + sketch.cos(t/12) * f;
 		},
+
+
+   Base64EncodeUrl : function(str){
+    return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+  },
+   Base64DecodeUrl :function (str){
+    str = (str + '===').slice(0, str.length + (str.length % 4));
+    return str.replace(/-/g, '+').replace(/_/g, '/');
+},
 	},
 
 	created() {
 
 	let uri = window.location.href.split('?');
-    
+    console.log(uri)
     if (uri.length == 2)
     {
       this.createMode = false;
-      let a = uri[1].split('=');
+      //let a = uri[1].split('=');
       //console.log(a);
-      if(a[0] == 'archive'){
+      
         //we are good to go
         this.createMode = false;
-        //console.log( "a[1]", a[1])
-        //console.log( "decode", decodeURIComponent(a[1]))
-        let d = decodeURIComponent(a[1]);
+        //console.log( "url raw", uri[1]);
+        let d = uri[1];
+        console.log( "url raw", d);
+        //console.log( "uri[1]", uri[1])
+        //console.log( "decode", decodeURIComponent(uri[1]))
+        d = this.Base64DecodeUrl(d);
+        console.log( "decode url", d);
         d = atob(d);
-        console.log( "d", d);
+        console.log( "decode64", d);
+       
         let da = JSON.parse(d);
         for (var i = 0; i < da.length; i++) {
           this.others[i] = da[i] ;
           //console.log( "data", da[i]);
+          //
         }
-      }
-      else{
-        ///some other arg that we can ignore
-        this.createMode = true
-      }
+        
     }else{
 
       this.createMode = true
     }
   }
+
+
 
 })
