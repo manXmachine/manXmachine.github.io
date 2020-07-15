@@ -132,7 +132,7 @@
 
                 <button id="saveButton" type="button" class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleSave"><i class="far fa-cloud-upload"></i> Save</button>
                  
-                <a class="btn btn-primary ml-1 btn-sm" v-bind:href="shareLink" target="_blank"><i class="far fa-share-square"></i> Share</a>
+                <iframe v-bind:src="'https://www.facebook.com/plugins/share_button.php?href='+shareLink+'&layout=button_count&size=large&appId=294447351868646&width=77&height=28'" width="110" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 
         </div><!--// .share-save-panel -->
 

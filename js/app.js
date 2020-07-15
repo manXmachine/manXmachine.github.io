@@ -13,7 +13,7 @@ const vm = new window.Vue({
 			createMode: true,
 			url: config.apiURL || 'http://localhost',
 		  t :0,
-      shareLink : "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/",
+      shareLink : "https://parametric.manxmachine.com/",
 			others : [{test:"test",weight:10, count:100,speed:5,pulse:10}],
 			colorsPalette : ["#feb914","#fe8826","#2c9fa2","#f03812","#b21236","#6f2e52","#d94d59","#25345b","#aa4853"],
 			
@@ -39,7 +39,7 @@ const vm = new window.Vue({
       var json = btoa(JSON.stringify(this.others));
       console.log("encoded 64",json);
       var json = this.Base64EncodeUrl(json);
-      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?"+json;
+      this.shareLink = "https://parametric.manxmachine.com/app?"+json;
      
       console.log("encoded urk",encodeURIComponent(json));
    },
