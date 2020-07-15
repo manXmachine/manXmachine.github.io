@@ -37,7 +37,9 @@
 
   <div v-if="!createMode" class="controllers controllers-try">
     <img alt="Parametric by MANXMACHINE" src="/dist/images/logo-parametric.png" class="mb-1 logo logo-parametric">
-    <a href="/app">Try PARAMETRIC for yourself</a>
+    <a v-if="!restartMode" href="/app">Try PARAMETRIC for yourself</a>
+    <a v-if="restartMode" href="/app">Start Again</a>
+     <iframe v-if="restartMode" v-bind:src="'https://www.facebook.com/plugins/share_button.php?href='+shareLink+'&layout=button_count&size=large&appId=294447351868646&width=77&height=28'" width="110" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
   </div>
 
 	<div v-if="createMode" class="controllers">

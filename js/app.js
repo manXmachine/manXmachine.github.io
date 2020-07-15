@@ -11,11 +11,12 @@ const vm = new window.Vue({
 		return {
 			
 			createMode: true,
+      restartMode: false,
 			url: config.apiURL || 'http://localhost',
 		  t :0,
       shareLink : "https://parametric.manxmachine.com/",
 			others : [{test:"test",weight:10, count:100,speed:5,pulse:10}],
-			colorsPalette : ["#feb914","#fe8826","#2c9fa2","#f03812","#b21236","#6f2e52","#d94d59","#25345b","#aa4853"],
+			colorsPalette : ["#feb914","#fe8826","#2c9fa2","#f03812","#aa4853","#b21236","#6f2e52","#d94d59","#25345b",],
 			
 		}
 	},
@@ -30,7 +31,7 @@ const vm = new window.Vue({
     draw(sketch){
       sketch.background(0);
       for (var i = 0; i < this.others.length; i++) {
-        this.lines(sketch,this.others[i].weight/10,this.colorsPalette[i],this.t*this.others[i].speed/200,sketch.windowHeight/(2.5),Number(this.others[i].count)/10,this.others[i].pulse/2);
+        this.lines(sketch,this.others[i].weight/(10+(i+10)),this.colorsPalette[i],this.t*this.others[i].speed/200*(i+1),sketch.windowHeight/3+(i-1),Number(this.others[i].count)/10*(i+1),this.others[i].pulse,i);
        }
       this.t += 2;
 	 },
@@ -47,6 +48,8 @@ const vm = new window.Vue({
 	handleSave: function(){
     	this.getOthers();
       this.postMine();
+      this.createMode = false;
+      this.restartMode = true
       
        
   },
@@ -81,7 +84,7 @@ const vm = new window.Vue({
 				console.log('ERROR:', response)
 			})
 		},
-	lines : function(sketch,w, _c, _t, f,  _count, _pulse) {
+	lines : function(sketch,w, _c, _t, f,  _count, _pulse, iteration) {
 
     //console.log("_count:",_count);
 
@@ -96,12 +99,16 @@ const vm = new window.Vue({
 		       sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
 		   	}
 
-        for (var i = 0; i < _count; i++) {
+        if(iteration < 1){
+          for (var i = 0; i < _count; i++) {
            c.setAlpha(sketch.map(i,0,_count,50,200))
            sketch.stroke(c);
            f = f - sketch.sin(this.t)* _pulse/50;
            sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
         }
+
+        }
+        
 
     		sketch.pop();
 		},
