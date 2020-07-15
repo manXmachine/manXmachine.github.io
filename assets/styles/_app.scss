@@ -1,4 +1,10 @@
-
+.parametric-app {
+	height: 100%;
+	overflow: hidden;
+	.app-page {
+		height: 100%;
+	}
+}
 .controllers {
 	padding: 4em;
 	width: 100%;
@@ -21,17 +27,20 @@
 			
 		}
 		a {
+			text-decoration: none;
 			border: solid 1px $white;
 			border-radius: 0;
 			color: $white;
-
+			&:hover {
+				color: $secondary-color;
+			}
 			&.active {
 				color: $black;
 			}
 		}
 	}
 	.tab-content {
-		max-width: 570px;
+		max-width: 550px;
 		padding: 2em 0 0 0;
 		color: $white;
 
@@ -42,5 +51,34 @@
 				font-size: 0.975rem;
 			}
 		}
+	}
+	// Try parametric yourself
+	&.controllers-try {
+		right: 0;
+		left: inherit;
+		text-align: right;
+		max-width: 300px;
+
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.share-save-panel {
+	padding: 4em;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	max-width: 570px;
+	text-align: right;
+
+	@include media-breakpoint-down(lg) {
+		position: relative;
+		padding: 3em 0 0 0;
+		border-top: solid 2px $white;
+		margin-top: 3em;
+		text-align: left;
+		max-width: none;
 	}
 }

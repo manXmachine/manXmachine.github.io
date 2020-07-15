@@ -28,14 +28,15 @@
 
 </head>
 
-<body>
+<body class="parametric-app">
 	<div id="app" class="app-page">
 		<div id="app">
   			<vue-p5 v-on="{setup, draw}"></vue-p5>
         
 		</div>
 
-  <div v-if="!createMode" class="controllers">
+  <div v-if="!createMode" class="controllers controllers-try">
+    <img alt="Parametric by MANXMACHINE" src="/dist/images/logo-parametric.png" class="mb-1 logo logo-parametric">
     <a href="/app">Try PARAMETRIC for yourself</a>
   </div>
 
@@ -98,25 +99,7 @@
                <i class="far fa-rabbit-fast fa-2x"></i> 
             </div>
           </div>
-        </div>
-
-        <div class="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
-           <div class="form-group row">
-
-            <div class="col-md-12">
-
-                <label for="saveButton">You can save your data to the cloud as often as you wish. Upon saving PARAMTERIC will randomly choose 2 (5) other users to create a merged artwork.</label>
-
-                <button id="saveButton" type="button" class="mt-1 btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleSave">Save</button>
-                 
-                 <a v-bind:href="shareLink" target="_blank">Share</a>
-
-            </div>
-                 
-            </div>
-        </div>
-
-         
+        </div>       
 
 
         </div><!--// .tab-content -->
@@ -138,13 +121,21 @@
             <a class="nav-link" id="future-tab" data-toggle="tab" href="#future" role="tab" aria-controls="future" aria-selected="false">Charge</a>
           </li>
           
-         
-           <li class="nav-item">
-            <a class="nav-link" id="share-tab" data-toggle="tab" href="#share" role="tab" aria-controls="feel" aria-selected="false">Save + Share</a>
-          </li>
-
+        
           
         </ul>
+
+
+         <div class="share-save-panel">
+
+                <label for="saveButton" class="mb-1 text-white">You can save your data to the cloud as often as you wish. Upon saving PARAMTERIC will randomly choose 2 (5) other users to create a merged artwork.</label>
+
+                <button id="saveButton" type="button" class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off" @click="handleSave"><i class="far fa-cloud-upload"></i> Save</button>
+                 
+                <a class="btn btn-primary ml-1 btn-sm" v-bind:href="shareLink" target="_blank"><i class="far fa-share-square"></i> Share</a>
+
+        </div><!--// .share-save-panel -->
+
 
       </div> <!--// .controllers -->
   </div><!--// .app -->
