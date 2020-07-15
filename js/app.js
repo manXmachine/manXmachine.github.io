@@ -94,16 +94,16 @@ const vm = new window.Vue({
 		    let c = sketch.color(_c);
 		   	
 		    for (var i = 0; i < _count; i++) {
-           c.setAlpha(sketch.map(i,0,_count,10,255))
+           c.setAlpha(sketch.map(i,0,_count,50,255))
 		       sketch.stroke(c);
 		       sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
 		   	}
 
         if(iteration < 1){
           for (var i = 0; i < _count; i++) {
-           c.setAlpha(sketch.map(i,0,_count,50,200))
+           c.setAlpha(sketch.map(i,0,_count,50,255))
            sketch.stroke(c);
-           f = f - sketch.sin(this.t)* _pulse/50;
+           f = f - sketch.sin(this.t)* _pulse/80;
            sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
         }
 
