@@ -39,7 +39,7 @@ const vm = new window.Vue({
       var json = btoa(JSON.stringify(this.others));
       console.log("encoded 64",json);
       var json = this.Base64EncodeUrl(json);
-      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
+      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?"+json;
      
       console.log("encoded urk",encodeURIComponent(json));
    },
@@ -57,10 +57,8 @@ const vm = new window.Vue({
       axios.get(this.url+"?limit=3").then((response) => {
       
       //this.others = [];
-       
-        for (var i = 0; i < response.data.length; i++) {
+       for (var i = 0; i < response.data.length; i++) {
             this.others[i+1] = response.data[i] ;
-            
         }
       //console.log("others:",this.others.length);
       this.createShareLink();
