@@ -36,10 +36,10 @@ const vm = new window.Vue({
 	 },
 
    createShareLink: function () {
-      var json = encodeURIComponent(btoa(JSON.stringify(this.others)));
-      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+json;
+      var json = btoa(JSON.stringify(this.others));
+      this.shareLink = "https://www.facebook.com/sharer/sharer.php?u=https://parametric.manxmachine.com/app?archive="+encodeURIComponent(json);
      
-      console.log("encoded",json)
+      //console.log("encoded",encodeURIComponent(json));
    },
 
 	handleSave: function(){
@@ -99,7 +99,7 @@ const vm = new window.Vue({
         for (var i = 0; i < _count; i++) {
            c.setAlpha(sketch.map(i,0,_count,50,100))
            sketch.stroke(c);
-           f = f - sketch.sin(this.t)* _pulse/100;
+           f = f - sketch.sin(this.t)* _pulse/50;
            sketch.line(this.x1(sketch,_t + i,f), this.y1(sketch,_t + i,f), this.x2(sketch,_t + i,f), this.y2(sketch,_t + i,f)); 
         }
 
@@ -135,10 +135,8 @@ const vm = new window.Vue({
       if(a[0] == 'archive'){
         //we are good to go
         this.createMode = false;
-        console.log( "a[1]", a[1])
-        console.log( "decode", decodeURIComponent(a[1]))
-
-        
+        //console.log( "a[1]", a[1])
+        //console.log( "decode", decodeURIComponent(a[1]))
         let d = decodeURIComponent(a[1]);
         d = atob(d);
         console.log( "d", d);
