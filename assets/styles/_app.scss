@@ -57,20 +57,29 @@
 		right: 0;
 		left: inherit;
 		text-align: right;
-		max-width: 300px;
+		max-width: 400px;
 
 		img {
 			max-width: 100%;
 		}
+		iframe {
+			margin-right: -15px;
+			display: inline-block;
+		}
 	}
 }
-
+.btn-startagain {
+	position: relative;
+    top: -11px;
+    padding: .15rem .5rem;
+    margin-right: 0.5em;
+}
 .share-save-panel {
 	padding: 4em;
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	max-width: 570px;
+	max-width: 450px;
 	text-align: right;
 
 	@include media-breakpoint-down(lg) {

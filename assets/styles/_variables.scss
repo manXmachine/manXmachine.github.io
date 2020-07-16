@@ -13,9 +13,18 @@
 // **** Fonts
 $primary-font: 'Roboto Mono', monospace;
 
+$yellow: #feb914;
+$orange: #fe8826;
+$teal: #2C9FA2;
+$red: #f03812;
+$plum: #aa4853;
+$purple: #6f2e52;
+$raspberry: #d94d59;
+$navy: #25345b;
 // Primary & Secondary Colours
 $primary-color:       #000000 !default; // Juicy juicy melon
-$secondary-color:     #FF4500 !default;
+$secondary-color:     $yellow !default;
+$highlight-color: $yellow;
 
 // Put whatever theme colours you want in here!
 
