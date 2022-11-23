@@ -16,7 +16,7 @@
     "asset-builder-nobower": "^1.1.2",
     "autoresize-textarea": "^1.1.3",
     "bootstrap": "^4.1.2",
-    "browser-sync": "^2.24.5",
+    "browser-sync": "^2.27.10",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
